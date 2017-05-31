@@ -1,6 +1,16 @@
 # module fx_lpng
 SOURCE_DIR = $$PWD/pdfium/third_party
 
+contains(QT_ARCH, arm) {
+    SOURCES += \
+    $$SOURCE_DIR/libpng16/arm/arm_init.c \
+    $$SOURCE_DIR/libpng16/arm/filter_neon_intrinsics.c
+    
+    DEFINES += \
+    PNG_ARM_NEON_OPT=2 \
+    PNG_ARM_NEON_IMPLEMENTATION=1
+}
+
 PRIVATE_HEADERS += \
 $$SOURCE_DIR/libpng16/png.h \
 $$SOURCE_DIR/libpng16/pngconf.h \
